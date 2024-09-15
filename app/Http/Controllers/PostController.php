@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PostController extends Controller
 {
@@ -12,7 +14,15 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $data = Post::published()->paginate(6);
+
+        if (request()->wantsJson()) {
+            return PostResource::collection($data);
+        }
+
+        return Inertia::render('Posts/Index', [
+            'posts' => $data,
+        ]);
     }
 
     /**
@@ -34,9 +44,19 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show($slug)
     {
-        //
+        $post = Post::with('category')->where('slug', $slug)->firstOrFail();
+
+        abort_if(!$post->is_published, 404);
+
+        if (request()->wantsJson()) {
+            return new PostResource($post);
+        }
+
+        return Inertia::render('Posts/Show', [
+            'post' => $post,
+        ]);
     }
 
     /**
@@ -61,5 +81,12 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function generate()
+    {
+        Post::factory()->count(10)->create();
+
+        return $this->respSuccess();
     }
 }

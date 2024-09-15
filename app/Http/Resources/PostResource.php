@@ -16,6 +16,7 @@ class PostResource extends JsonResource
     {
         return array_merge(parent::toArray($request), [
             'is_published' => $this->is_published,
+            'excerpt' => $this->excerpt,
 
             //
             'user' => UserResource::make($this->user),

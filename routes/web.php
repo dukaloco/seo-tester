@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Models\User;
 use Illuminate\Foundation\Application;
@@ -15,6 +16,9 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get("/posts/generate", [PostController::class, 'generate'])->name('posts.generate');
+Route::resource('/posts', PostController::class);
 
 // Filament overrides
 Route::get('/admin/login', function () {

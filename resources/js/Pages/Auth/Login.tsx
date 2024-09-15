@@ -6,6 +6,8 @@ import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
+import { Alert, AlertDescription, AlertTitle } from "@/Components/ui/alert";
+import { Terminal } from "lucide-react";
 
 export default function Login({
     status,
@@ -37,6 +39,24 @@ export default function Login({
                     {status}
                 </div>
             )}
+
+            <Alert>
+                <Terminal className="h-4 w-4" />
+                <AlertTitle>Demo Logins</AlertTitle>
+                <AlertDescription>
+                    <div className="flex items-center justify-between gap-2">
+                        <div className="font-bold">Admin</div>
+                        <code>admin@example.com</code>
+                        <code>admin</code>
+                    </div>
+                    <div className="flex items-center justify-between gap-2">
+                        <div className="font-bold">User</div>
+                        <code>user@example.com</code>
+                        <code>user</code>
+                    </div>
+                </AlertDescription>
+            </Alert>
+            <br />
 
             <form onSubmit={submit}>
                 <div>
