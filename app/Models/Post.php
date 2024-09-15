@@ -25,9 +25,21 @@ class Post extends Model
         'published_at' => 'datetime',
     ];
 
+    protected $appends = [
+        'excerpt',
+        'created_at_human',
+        'published_at_human',
+        'is_published',
+    ];
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function isPublished(): Attribute
@@ -41,6 +53,20 @@ class Post extends Model
     {
         return Attribute::make(
             get: fn() => Str::substr(strip_tags($this->content), 0, 100),
+        );
+    }
+    
+    public function createdAtHuman(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->created_at->diffForHumans(),
+        );
+    }
+    
+    public function publishedAtHuman(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->published_at?->diffForHumans(),
         );
     }
 

@@ -14,7 +14,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data = Post::published()->paginate(6);
+        $data = Post::with('category')
+            ->published()
+            ->latest('published_at')
+            ->paginate(4);
 
         if (request()->wantsJson()) {
             return PostResource::collection($data);
@@ -46,7 +49,9 @@ class PostController extends Controller
      */
     public function show($slug)
     {
-        $post = Post::with('category')->where('slug', $slug)->firstOrFail();
+        $post = Post::with('category', 'user')
+            ->where('slug', $slug)
+            ->firstOrFail();
 
         abort_if(!$post->is_published, 404);
 

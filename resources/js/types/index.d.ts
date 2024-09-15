@@ -36,8 +36,12 @@ export type Post = {
   title: string;
   slug: string;
   content: string;
-  published_at: string;
+  published_at: string | null;
+  published_at_human: string | null;
+  created_at: string;
+  created_at_human: string;
   featured_img: string;
-  category_id: number;
+  category_id: number | null;
+  user_id: number;
   excerpt: string;
 };

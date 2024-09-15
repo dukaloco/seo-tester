@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -45,6 +46,7 @@ class PostFactory extends Factory
             'featured_img' => fake()->imageUrl(),
             'published_at' => fake()->boolean(40) ? fake()->dateTimeBetween('-1 year', '-1 day') : null,
             'category_id' => Category::inRandomOrder()->first()->id,
+            'user_id' => User::inRandomOrder()->first()->id,
         ];
     }
 

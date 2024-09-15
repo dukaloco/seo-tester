@@ -13,7 +13,7 @@ class CategoryTableSeeder extends Seeder
     public function run(): void
     {
         $items = [
-            'php' => 'PPH',
+            'php' => 'PHP',
             'javascript' => 'JavaScript',
             'java' => 'JAVA',
             'python' => 'Python',

@@ -1,11 +1,21 @@
 import { Category, PaginationMeta, Post } from "@/types";
 import axios from "axios";
 import { useEffect, useState, useTransition } from "react";
-import { Card, CardContent } from "../ui/card";
-import { Skeleton } from "../ui/skeleton";
-import SinglePost from "./single-post";
 import Paginator from "../paginator";
+import { Button } from "../ui/button";
+import { Card, CardContent } from "../ui/card";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "../ui/dialog";
+import { Skeleton } from "../ui/skeleton";
 import GeneratePostsButton from "./generate-posts-button";
+import SinglePost from "./single-post";
+import ReactJson from "react-json-view";
+import { ScrollArea } from "../ui/scroll-area";
 
 interface Props {}
 
@@ -42,11 +52,33 @@ const AllPosts = ({}: Props) => {
 
     return (
         <div className="space-y-4">
-            <GeneratePostsButton
-                onGenerate={() => {
-                    fetchPosts();
-                }}
-            />
+            <div className="flex gap-x-4">
+                <GeneratePostsButton
+                    onGenerate={() => {
+                        fetchPosts();
+                    }}
+                />
+
+                <Dialog>
+                    <DialogTrigger asChild>
+                        <Button variant="outline">View JSON Response</Button>
+                    </DialogTrigger>
+                    <DialogContent className="md:max-w-5xl">
+                        <DialogHeader>
+                            <DialogTitle>JSON Response</DialogTitle>
+                        </DialogHeader>
+                        <div>
+                            <ScrollArea className="h-[80vh] w-full rounded-md border">
+                                <ReactJson
+                                    src={posts}
+                                    name="posts"
+                                    collapsed={true}
+                                />
+                            </ScrollArea>
+                        </div>
+                    </DialogContent>
+                </Dialog>
+            </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                 {posts.map((post) => (
