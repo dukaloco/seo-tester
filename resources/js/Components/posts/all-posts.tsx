@@ -1,4 +1,4 @@
-import { Category, PaginationMeta, Post } from "@/types";
+import { Category, PaginationMeta, Post, User } from "@/types";
 import axios from "axios";
 import { useEffect, useState, useTransition } from "react";
 import Paginator from "../paginator";
@@ -23,6 +23,7 @@ const AllPosts = ({}: Props) => {
     const [posts, setPosts] = useState<
         (Post & {
             category: Category;
+            user: User;
         })[]
     >([]);
 
