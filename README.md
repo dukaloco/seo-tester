@@ -10,7 +10,7 @@
 ## Getting Started
 - Clone repo
   ```bash
-  git@github.com:syntaxlexx/laravel-inertia-and-filamentphp.git
+ git clone git@github.com:dukaloco/seo-tester.git
   ```
 - Install php dependencies
   ```bash
@@ -38,17 +38,6 @@
   email: user@example.com
   password: user
   ```
-
-#### Hints
-- Use zustand with persistent mode enabled so as to maintain state between any page reloads.
-
-### TODO List
-- [ ] Install shadcn-ui
-- [ ] Better Landing page
-- [ ] About us page
-- [ ] Contact us
-- [ ] Live chat page via [Laravel Reverb](https://reverb.laravel.com/)
-- [ ] SEO management
 
 ## About Laravel
 
