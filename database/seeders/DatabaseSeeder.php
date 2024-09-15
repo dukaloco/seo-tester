@@ -34,5 +34,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'user',
             'password' => bcrypt('user'),
         ]);
+
+        $this->call(CategoryTableSeeder::class);
+        $this->call(PostTableSeeder::class);
+
     }
 }
