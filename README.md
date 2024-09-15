@@ -9,8 +9,9 @@
 
 ## Getting Started
 - Clone repo
+
   ```bash
- git clone git@github.com:dukaloco/seo-tester.git
+  git clone git@github.com:dukaloco/seo-tester.git
   ```
 - Install php dependencies
   ```bash
