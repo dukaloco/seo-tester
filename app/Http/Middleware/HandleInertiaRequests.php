@@ -34,6 +34,12 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'site' => [
+                'name' => config('app.name'),
+                'slogan' => "The best place to get your daily dose of posts!",
+                'description' => "This is a sample description. If you see this, please don't hesitate to contact us at support@example.com. WE THE BEST MUSIK!",
+                'image' => asset('logo.png'),
+            ],
         ];
     }
 }

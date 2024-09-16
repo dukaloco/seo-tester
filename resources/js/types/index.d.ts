@@ -11,6 +11,12 @@ export type PageProps<
   auth: {
     user: User;
   };
+  site: {
+    name: string;
+    slogan: string;
+    description: string;
+    image: string;
+  };
 };
 
 export type PaginationMeta = {

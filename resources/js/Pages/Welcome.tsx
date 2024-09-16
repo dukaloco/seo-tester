@@ -1,17 +1,21 @@
 import Footer from "@/Components/footer";
 import Navbar from "@/Components/navbar";
 import AllPosts from "@/Components/posts/all-posts";
+import Seo from "@/Components/seo";
 import { PageProps } from "@/types";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 
 export default function Welcome({
     auth,
     laravelVersion,
     phpVersion,
 }: PageProps<{ laravelVersion: string; phpVersion: string }>) {
+    const pageProps = usePage().props;
+    const site = pageProps.site as PageProps["site"];
+
     return (
         <>
-            <Head title="Welcome" />
+            <Seo />
 
             <div className="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
                 <img
