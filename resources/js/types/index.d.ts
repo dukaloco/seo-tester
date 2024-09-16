@@ -23,6 +23,13 @@ export type PaginationMeta = {
   total: number;
 };
 
+export type PaginationLink = {
+  first: string;
+  last: string;
+  next: string | null;
+  prev: string | null;
+};
+
 export type Category = {
   id: number;
   name: string;

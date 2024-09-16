@@ -1,7 +1,14 @@
 import Paginator from "@/Components/paginator";
 import PostsGrid from "@/Components/posts/posts-grid";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Category, PageProps, PaginationMeta, Post, User } from "@/types";
+import {
+    Category,
+    PageProps,
+    PaginationLink,
+    PaginationMeta,
+    Post,
+    User,
+} from "@/types";
 import { Head } from "@inertiajs/react";
 
 interface Props extends PageProps {
@@ -10,7 +17,8 @@ interface Props extends PageProps {
             category: Category | null;
             user: User | null;
         })[];
-        meta: PaginationMeta | null;
+        meta: PaginationMeta;
+        links: PaginationLink;
     };
 }
 
@@ -33,8 +41,8 @@ const Index = ({ posts, auth }: Props) => {
                     {posts.meta && (
                         <Paginator
                             meta={posts.meta}
-                            nextLink={posts.links?.next}
-                            previousLink={posts.links?.prev}
+                            nextLink={posts.links.next}
+                            previousLink={posts.links.prev}
                         />
                     )}
                 </div>

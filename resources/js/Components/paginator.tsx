@@ -14,8 +14,8 @@ interface Props {
     meta: PaginationMeta;
     onPreviousPage?: () => void;
     onNextPage?: () => void;
-    nextLink?: string;
-    previousLink?: string;
+    nextLink?: string | null;
+    previousLink?: string | null;
 }
 
 const Paginator = ({
@@ -50,7 +50,7 @@ const Paginator = ({
                         <PaginationItem>
                             <PaginationPrevious
                                 aria-disabled={!hasPrev}
-                                href={previousLink}
+                                href={previousLink ?? "#"}
                                 className={cn({
                                     "cursor-not-allowed": !hasPrev,
                                 })}
@@ -86,7 +86,7 @@ const Paginator = ({
 
                         <PaginationItem>
                             <PaginationNext
-                                href={nextLink}
+                                href={nextLink ?? "#"}
                                 className={cn({
                                     "cursor-not-allowed": !hasNext,
                                 })}

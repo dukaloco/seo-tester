@@ -11,7 +11,7 @@ import {
 } from "../ui/dialog";
 import { ScrollArea } from "../ui/scroll-area";
 
-import SinglePost from "./single-post";
+import PostCard from "./post-card";
 
 interface Props extends PropsWithChildren {
     posts: (Post & {
@@ -51,7 +51,7 @@ const PostsGrid = ({ posts, jsonData, children }: Props) => {
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                 {posts.map((post) => (
-                    <SinglePost key={post.id} post={post} />
+                    <PostCard key={post.id} post={post} />
                 ))}
             </div>
         </div>

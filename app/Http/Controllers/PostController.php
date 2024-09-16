@@ -53,7 +53,7 @@ class PostController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
-        abort_if(!$post->is_published, 404);
+        abort_if(!($post->is_published || $post->user_id == auth()->id()), 404);
 
         if (request()->wantsJson()) {
             return new PostResource($post);
@@ -61,6 +61,13 @@ class PostController extends Controller
 
         return Inertia::render('Posts/Show', [
             'post' => $post,
+        ]);
+    }
+
+    public function showClientSide($slug)
+    {
+        return Inertia::render('Posts/ShowClientSide', [
+            'slug' => $slug,
         ]);
     }
 

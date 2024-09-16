@@ -13,6 +13,7 @@ Route::get('/user', function (Request $request) {
 
 Route::get("/posts/generate", [PostController::class, 'generate']);
 Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts/{slug}', [PostController::class, 'show']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
 

@@ -18,6 +18,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get("/posts/generate", [PostController::class, 'generate'])->name('posts.generate');
+Route::get("/posts/client-side/{slug}", [PostController::class, 'showClientSide'])->name('posts.show.client-side');
 Route::resource('/posts', PostController::class);
 
 // Filament overrides
