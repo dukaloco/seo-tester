@@ -6,6 +6,19 @@ import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
 import { User } from "@/types";
 
+const navItems = [
+    {
+        label: "Dashboard",
+        href: route("dashboard"),
+        active: route().current("dashboard"),
+    },
+    {
+        label: "Posts",
+        href: route("dashboard.posts.index"),
+        active: route().current("dashboard.posts.index"),
+    },
+];
+
 export default function Authenticated({
     user,
     header,
@@ -27,12 +40,15 @@ export default function Authenticated({
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink
-                                    href={route("dashboard")}
-                                    active={route().current("dashboard")}
-                                >
-                                    Dashboard
-                                </NavLink>
+                                {navItems.map((item) => (
+                                    <NavLink
+                                        key={item.label}
+                                        href={item.href}
+                                        active={item.active}
+                                    >
+                                        {item.label}
+                                    </NavLink>
+                                ))}
                             </div>
                         </div>
 
@@ -131,12 +147,15 @@ export default function Authenticated({
                     }
                 >
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink
-                            href={route("dashboard")}
-                            active={route().current("dashboard")}
-                        >
-                            Dashboard
-                        </ResponsiveNavLink>
+                        {navItems.map((item) => (
+                            <ResponsiveNavLink
+                                key={item.label}
+                                href={item.href}
+                                active={item.active}
+                            >
+                                {item.label}
+                            </ResponsiveNavLink>
+                        ))}
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">

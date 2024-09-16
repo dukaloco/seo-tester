@@ -31,12 +31,13 @@ Route::get('/admin/login', function () {
 |--------------------------------------------------------------------------
  */
 Route::prefix('dashboard')
-    ->middleware(['auth', 'verified', 'dashboard-redirector:' . implode(',', [User::ROLE_USER])])
+    ->middleware(['auth:sanctum', 'verified', 'dashboard-redirector:' . implode(',', [User::ROLE_USER])])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::as('dashboard.')->group(function () {
-
+            Route::get('/posts', [DashboardController::class, 'posts'])->name('posts.index');
+            Route::get('/posts/{post}', [DashboardController::class, 'post'])->name('posts.show');
         });
     });
 

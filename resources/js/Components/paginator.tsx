@@ -12,11 +12,19 @@ import { PaginationMeta } from "@/types";
 
 interface Props {
     meta: PaginationMeta;
-    onPreviousPage: () => void;
-    onNextPage: () => void;
+    onPreviousPage?: () => void;
+    onNextPage?: () => void;
+    nextLink?: string;
+    previousLink?: string;
 }
 
-const Paginator = ({ meta, onNextPage, onPreviousPage }: Props) => {
+const Paginator = ({
+    meta,
+    onNextPage,
+    onPreviousPage,
+    nextLink = "#",
+    previousLink = "#",
+}: Props) => {
     const { current_page, last_page, total } = meta;
     const hasPrev = current_page > 1;
     const hasNext = current_page < last_page;
@@ -42,14 +50,20 @@ const Paginator = ({ meta, onNextPage, onPreviousPage }: Props) => {
                         <PaginationItem>
                             <PaginationPrevious
                                 aria-disabled={!hasPrev}
-                                href="#"
+                                href={previousLink}
                                 className={cn({
                                     "cursor-not-allowed": !hasPrev,
                                 })}
                                 onClick={(e) => {
-                                    e.preventDefault();
-                                    if (!hasPrev) return;
-                                    onPreviousPage();
+                                    if (!hasPrev) {
+                                        e.preventDefault();
+                                        return;
+                                    }
+
+                                    if (onPreviousPage) {
+                                        e.preventDefault();
+                                        return onPreviousPage();
+                                    }
                                 }}
                             />
                         </PaginationItem>
@@ -72,14 +86,19 @@ const Paginator = ({ meta, onNextPage, onPreviousPage }: Props) => {
 
                         <PaginationItem>
                             <PaginationNext
-                                href="#"
+                                href={nextLink}
                                 className={cn({
                                     "cursor-not-allowed": !hasNext,
                                 })}
                                 onClick={(e) => {
-                                    e.preventDefault();
-                                    if (!hasNext) return;
-                                    onNextPage();
+                                    if (!hasNext) {
+                                        e.preventDefault();
+                                        return;
+                                    }
+                                    if (onNextPage) {
+                                        e.preventDefault();
+                                        return onNextPage();
+                                    }
                                 }}
                             />
                         </PaginationItem>

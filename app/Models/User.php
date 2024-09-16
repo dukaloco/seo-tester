@@ -10,12 +10,14 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, Notifiable;
     use HasRoles;
+    use HasApiTokens;
 
     /*
     |--------------------------------------------------------------------------
@@ -60,6 +62,9 @@ class User extends Authenticatable implements FilamentUser
     protected $hidden = [
         'password',
         'remember_token',
+        'github_id',
+        'github_token',
+        'github_refresh_token',
     ];
 
     /**
