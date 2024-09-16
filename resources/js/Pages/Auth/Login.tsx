@@ -8,6 +8,7 @@ import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { Alert, AlertDescription, AlertTitle } from "@/Components/ui/alert";
 import { Terminal } from "lucide-react";
+import OauthButtons from "@/Components/oauth-buttons";
 
 export default function Login({
     status,
@@ -122,6 +123,10 @@ export default function Login({
                     </PrimaryButton>
                 </div>
             </form>
+
+            <br />
+
+            <OauthButtons />
         </GuestLayout>
     );
 }

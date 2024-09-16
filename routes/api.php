@@ -13,3 +13,6 @@ Route::get("/posts/generate", [PostController::class, 'generate']);
 Route::get('/posts', [PostController::class, 'index']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
+
+
+require __DIR__ . '/oauth.php';

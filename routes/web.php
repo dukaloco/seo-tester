@@ -15,7 +15,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('home');
 
 Route::get("/posts/generate", [PostController::class, 'generate'])->name('posts.generate');
 Route::resource('/posts', PostController::class);
@@ -57,3 +57,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/oauth.php';
