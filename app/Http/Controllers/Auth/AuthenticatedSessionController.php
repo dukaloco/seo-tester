@@ -22,6 +22,7 @@ class AuthenticatedSessionController extends Controller
 {
     protected $allowedProviders = [
         'github',
+        'google',
     ];
 
     /**
