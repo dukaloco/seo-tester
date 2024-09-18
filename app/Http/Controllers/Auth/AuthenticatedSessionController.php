@@ -207,15 +207,37 @@ class AuthenticatedSessionController extends Controller
     {
         $provider = strtolower($provider);
 
-        return User::updateOrCreate([
-            'email' => $oauthUser->email,
-        ], [
-            'name' => $oauthUser->name,
+        $user = User::where('email', $oauthUser->email)->first();
+
+        $commonData = [
             $provider . "_id" => $oauthUser->id,
             $provider . '_token' => $oauthUser->token,
             $provider . '_refresh_token' => $oauthUser->refreshToken,
+        ];
+
+        if ($user) {
+            if (!$user->name) {
+                $commonData['name'] = $oauthUser->name;
+            }
+
+            if (!$user->avatar) {
+                $commonData['avatar'] = $oauthUser->getAvatar();
+            }
+
+            if (!$user->password) {
+                $commonData['password'] = bcrypt(Str::random());
+            }
+
+            $user->update($commonData);
+
+            return $user;
+        }
+
+        return User::create(array_merge($commonData, [
+            'email' => $oauthUser->email,
+            'name' => $oauthUser->name,
             'avatar' => $oauthUser->getAvatar(),
             'password' => bcrypt(Str::random()),
-        ]);
+        ]));
     }
 }
