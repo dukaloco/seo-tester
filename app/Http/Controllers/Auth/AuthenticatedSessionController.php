@@ -139,6 +139,20 @@ class AuthenticatedSessionController extends Controller
 
         $user = $this->getUserFromProvider($provider, $oauthUser);
 
+        if ($request->wantsJson()) {
+            $deviceName = $request->device_name ?? $user->name . ' device';
+
+            return response()->json([
+                'message' => 'Login Successful',
+                'two_factor' => false,
+                'errors' => false,
+                'auth' => true,
+                'user' => new UserResource($user),
+                'access_token' => $user->createToken($deviceName)->plainTextToken,
+                // 'refresh_token' => $token->refresh_token,
+            ]);
+        }
+
         Auth::login($user);
 
         if ($user->isAdmin || $user->isSudo) {
