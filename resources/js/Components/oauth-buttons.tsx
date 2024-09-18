@@ -13,7 +13,10 @@ const OauthButtons = ({}: Props) => {
             </a>
 
             <a href={route("oauth.redirect", "google")}>
-                <Button variant="outline" className="w-full" disabled={true}>
+                <Button
+                    variant="outline"
+                    className="w-full bg-rose-500 text-white"
+                >
                     Login with Google
                 </Button>
             </a>
