@@ -169,7 +169,7 @@ class AuthenticatedSessionController extends Controller
     public function oauthCallbackFromApi(Request $request, $provider)
     {
         $request->validate([
-            'token' => 'nullable|string|min:1',
+            'token' => 'nullable|string',
         ]);
 
         $provider = strtolower($provider);
@@ -215,6 +215,7 @@ class AuthenticatedSessionController extends Controller
             $provider . '_refresh_token' => $oauthUser->refreshToken,
         ];
 
+        log("email: " . $oauthUser->email);
         log(json_encode($commonData));
 
         if ($user) {
