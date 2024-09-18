@@ -215,6 +215,8 @@ class AuthenticatedSessionController extends Controller
             $provider . '_refresh_token' => $oauthUser->refreshToken,
         ];
 
+        log(json_encode($commonData));
+
         if ($user) {
             if (!$user->name) {
                 $commonData['name'] = $oauthUser->name;
@@ -227,6 +229,8 @@ class AuthenticatedSessionController extends Controller
             if (!$user->password) {
                 $commonData['password'] = bcrypt(Str::random());
             }
+
+            log(json_encode($commonData));
 
             $user->update($commonData);
 
