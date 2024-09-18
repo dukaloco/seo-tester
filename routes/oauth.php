@@ -13,3 +13,6 @@ Route::get('/oauth/callback/{provider}', [AuthenticatedSessionController::class,
 
 Route::get('/oauth/callback-with-token/{provider}', [AuthenticatedSessionController::class, 'oauthCallbackWithToken'])
     ->name('oauth.callback-with-token');
+
+    Route::get('/oauth/callback-from-api/{provider}', [AuthenticatedSessionController::class, 'oauthCallbackFromApi'])
+    ->name('oauth.callback-from-api');

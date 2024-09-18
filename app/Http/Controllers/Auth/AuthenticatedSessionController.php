@@ -237,6 +237,8 @@ class AuthenticatedSessionController extends Controller
             return $user;
         }
 
+        log("Creating new User");
+
         return User::create(array_merge($commonData, [
             'email' => $oauthUser->email,
             'name' => $oauthUser->name,
