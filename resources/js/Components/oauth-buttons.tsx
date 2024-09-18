@@ -12,9 +12,11 @@ const OauthButtons = ({}: Props) => {
                 </Button>
             </a>
 
-            <Button variant="outline" className="w-full" disabled={true}>
-                Login with Google
-            </Button>
+            <a href={route("oauth.redirect", "google")}>
+                <Button variant="outline" className="w-full" disabled={true}>
+                    Login with Google
+                </Button>
+            </a>
         </div>
     );
 };
