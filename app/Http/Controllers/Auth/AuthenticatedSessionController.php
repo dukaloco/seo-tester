@@ -208,10 +208,10 @@ class AuthenticatedSessionController extends Controller
         $provider = strtolower($provider);
 
         return User::updateOrCreate([
-            $provider . "_id" => $oauthUser->id,
+            'email' => $oauthUser->email,
         ], [
             'name' => $oauthUser->name,
-            'email' => $oauthUser->email,
+            $provider . "_id" => $oauthUser->id,
             $provider . '_token' => $oauthUser->token,
             $provider . '_refresh_token' => $oauthUser->refreshToken,
             'avatar' => $oauthUser->getAvatar(),
